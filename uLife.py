@@ -119,7 +119,7 @@ class World:
                 if not c.Alive() and alive_neighbors == 3:
                     c.ToLife()
                     continue
-                if c.Alive() and alive_neighbors < 3:
+                if c.Alive() and alive_neighbors < 2:
                     c.EmptyDeath()
                     continue
                 if c.Alive() and alive_neighbors > 3:
@@ -140,9 +140,9 @@ class World:
             t.append(r)
         return str(tabulate(t))
 
-w = World(7,7)
+w = World(8,8)
 w.ToLife((0,0), (0,1), (1,1), (1,2), (1,3), (0,2))
 while True:
     print(w)
     w.Step()
-    time.sleep(1)
+    time.sleep(2)
