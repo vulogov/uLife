@@ -66,6 +66,7 @@ class World:
         self.xsize   = xsize
         self.ysize   = ysize
         self.cells   = {}
+        self.age     = 0
         self.__initcells__()
     def __initcells__(self):
         for i in range(0,self.xsize):
@@ -100,6 +101,7 @@ class World:
         n.append(self.cells[(x1,y2)])
         return (c,n)
     def Step(self):
+        self.age += 1
         for i in range(0,self.xsize):
             for j in range(0, self.ysize):
                 c, n = self.neighbors(i,j)
@@ -140,9 +142,10 @@ class World:
             t.append(r)
         return str(tabulate(t))
 
-w = World(8,8)
-w.ToLife((0,0), (0,1), (1,1), (1,2), (1,3), (0,2))
-while True:
-    print(w)
-    w.Step()
-    time.sleep(2)
+if __name__ == '__main__':
+    w = World(8,8)
+    w.ToLife((0,0), (0,1), (1,1), (1,2), (1,3), (0,2))
+    while True:
+        print(w)
+        w.Step()
+        time.sleep(2)
